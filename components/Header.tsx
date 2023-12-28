@@ -14,17 +14,17 @@ function Header() {
   ]);
   const [loading, setLoading] = useState<boolean>(false);
   const [suggestion, setSuggestion] = useState<string>("");
-  // useEffect(() => {
-  //     if (board.columns.size === 0) return;
-  //     setLoading(true);
+  useEffect(() => {
+      if (board.columns.size === 0) return;
+      setLoading(true);
 
-  //     const fetchSuggestionFunc = async () => {
-  //         const suggestion = await fetchSuggestion(board);
-  //         setSuggestion(suggestion);
-  //         setLoading(false);
-  //     }
-  //     fetchSuggestionFunc();
-  // }, [board])
+      const fetchSuggestionFunc = async () => {
+          const suggestion = await fetchSuggestion(board);
+          setSuggestion(suggestion);
+          setLoading(false);
+      }
+      fetchSuggestionFunc();
+  }, [board])
 
   return (
     <header>

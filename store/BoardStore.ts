@@ -23,7 +23,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   board: {
     columns: new Map<TypeColumn, Column>(),
   },
-  
+
   searchString: "",
   newTaskInput: "",
   newTaskType: "pending",
