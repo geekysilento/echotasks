@@ -14,17 +14,26 @@ function Header() {
   ]);
   const [loading, setLoading] = useState<boolean>(false);
   const [suggestion, setSuggestion] = useState<string>("");
-  useEffect(() => {
-      if (board.columns.size === 0) return;
-      setLoading(true);
+  // useEffect(() => {
+  //     if (board.columns.size === 0) return;
+  //     setLoading(true);
 
-      const fetchSuggestionFunc = async () => {
-          const suggestion = await fetchSuggestion(board);
-          setSuggestion(suggestion);
-          setLoading(false);
-      }
-      fetchSuggestionFunc();
-  }, [board])
+  //     const fetchSuggestionFunc = async () => {
+  //         const suggestion = await fetchSuggestion(board);
+  //         setSuggestion(suggestion);
+  //         setLoading(false);
+  //     }
+  //     fetchSuggestionFunc();
+  // }, [board])
+
+  const generateGptSummary = async () => {
+    if (board.columns.size === 0) return;
+    setLoading(true);
+
+    const suggestion = await fetchSuggestion(board);
+    setSuggestion(suggestion);
+    setLoading(false);
+  };
 
   return (
     <header>
@@ -58,13 +67,17 @@ function Header() {
         </div>
       </div>
       <div className="flex items-center justify-center px-5 py-5">
-        <p className="flex items-center text-teal-500 pr-5 shadow-xl rounded-xl w-fit bg-white max-w-3xl font-medium p-2">
+        <button
+          onClick={generateGptSummary}
+          className="flex items-center text-sm text-white bg-teal-500 border border-teal-500 rounded-xl p-2 hover:bg-teal-600 focus:outline-none focus:ring focus:border-teal-700"
+        >
           <UserCircleIcon
-            className={`h-10 w-10 mr-1 inline-block text-teal-500 ${
-              loading && "animate-spin"
-            }`}
+            className={`h-10 w-10 mr-1 inline-block text-white ${loading && "animate-spin"
+              }`}
           />
-
+          Generate Summary
+        </button>
+        <p className="flex items-center text-sm text-teal-500 pr-5 py-4 shadow-xl rounded-xl w-fit bg-white max-w-3xl font-medium p-2">
           {suggestion && !loading
             ? suggestion
             : "GPT is summarizing your tasks for the day."}

@@ -8,12 +8,16 @@ const formatTodosForAI = (board: Board) => {
 
   const flatArrayCounted = Object.entries(flatArray).reduce(
     (map, [key, value]) => {
-      map[key as TypeColumn] = value.length;
+      map[key as TypeColumn] = {
+        count: value.length,
+        todos: value.map(todo => todo.title),
+      };
       return map;
     },
-    {} as { [key in TypeColumn]: number }
+    {} as { [key in TypeColumn]: { count: number; todos: string[] } }
   );
+
   return flatArrayCounted;
 };
 
-export default formatTodosForAI;
+export default formatTodosForAI
