@@ -15,8 +15,9 @@ function Board() {
       state.updateTodoDB,
     ]
   );
+  const CreatedBy = "modalusername"
   useEffect(() => {
-    getBoard();
+    getBoard(CreatedBy);
   }, [getBoard]);
 
   const handleOnDragEnd = (result: DropResult) => {

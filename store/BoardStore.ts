@@ -4,7 +4,7 @@ import { create } from "zustand";
 
 interface BoardState {
   board: Board;
-  getBoard: () => void;
+  getBoard: (createdBy : string) => void;
   setBoardState: (board: Board) => void;
   updateTodoDB: (todo: Todo, columnId: TypeColumn) => void;
   searchString: string;
@@ -28,8 +28,8 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   newTaskInput: "",
   newTaskType: "pending",
   setSearchString: (searchString) => set({ searchString }),
-  getBoard: async () => {
-    const board = await getTodosGroupedByColumn();
+  getBoard: async (CreatedBy) => {
+    const board = await getTodosGroupedByColumn(CreatedBy);
     set({ board });
   },
   setBoardState: (board) => set({ board }),
