@@ -2,7 +2,7 @@ import Modal from "@/components/Modal";
 import "./globals.css";
 
 export const metadata = {
-  title: "Todo-app",
+  title: "Echotasks",
   description: "Modern Todo-App",
 };
 

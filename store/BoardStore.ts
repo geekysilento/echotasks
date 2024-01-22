@@ -12,7 +12,7 @@ interface BoardState {
   newTaskInput: string;
   setNewTaskInput: (input: string) => void;
 
-  addTask: (todo: string, columnId: TypeColumn) => void;
+  addTask: (todo: string, columnId: TypeColumn, createdBy: string) => void;
 
   deleteTask: (taskIndex: number, todoId: Todo, id: TypeColumn) => void;
   newTaskType: TypeColumn;
@@ -60,12 +60,12 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       }
     );
   },
-  addTask: async (todo: string, columnId: TypeColumn) => {
+  addTask: async (todo: string, columnId: TypeColumn, createdBy: string) => {
     const { $id } = await databases.createDocument(
       process.env.NEXT_PUBLIC_DATABASE_ID!,
       process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!,
       ID.unique(),
-      { title: todo, status: columnId }
+      { title: todo, status: columnId, createdBy: createdBy }
     );
 
     set({ newTaskInput: "" });
@@ -76,6 +76,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
         $createdAt: new Date().toISOString(),
         title: todo,
         status: columnId,
+        createdBy: createdBy,
       };
 
       const column = newColumns.get(columnId);

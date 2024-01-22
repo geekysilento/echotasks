@@ -16,16 +16,15 @@ function Modal() {
     state.isOpen,
     state.closeModal
   ])
-
-
+ const testname = "modalusername"
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!newTaskInput) return;
-  
-    addTask(newTaskInput, newTaskType);
+
+    addTask(newTaskInput, newTaskType, testname);
     closeModal();
   };
-  
+
 
   return (
     // Use the `Transition` component at the root level

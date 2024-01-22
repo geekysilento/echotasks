@@ -14,6 +14,7 @@ interface Todo extends Model.Document {
     $createdAt: string;
     title: string;
     status: TypeColumn;
+    createdBy: string;
     image?: Image;
 }
 

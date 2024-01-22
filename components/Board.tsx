@@ -77,7 +77,6 @@ function Board() {
         id: finishCol.id,
         todos: finishTodos,
       });
-
       updateTodoDB(todoMoved, finishCol.id);
       setBoardState({ ...board, columns: newColumns });
     }
