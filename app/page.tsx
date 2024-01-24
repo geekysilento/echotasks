@@ -1,14 +1,25 @@
 import Board from "@/components/Board";
 import Header from "@/components/Header";
-import Signin from "@/components/Signin";
-import Signup from "@/components/Signup";
+import { redirect } from "next/navigation";
+
+import Link from "next/link";
 
 export default function Home() {
-  return (
-    <main>
-      <Signup/>
-      {/* <Header />
-      <Board /> */}
-    </main>
-  );
-}
+  const user = null;
+  if(!user){
+    redirect("/auth/signin")
+  }
+
+    return (
+      <main>
+        {
+          <>
+            <Header />
+            <Board />
+          </>
+        }
+      </main>
+    );
+  }
+
+

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { CardContent, CardFooter, Card } from "@/components/ui/card"
 import Link from "next/link"
 import Image from "next/image"
+import SigninForm from "@/components/signinForm"
 
 export default function Component() {
   return (
@@ -25,21 +26,7 @@ export default function Component() {
       </div>
       <Card className="w-[400px] pt-6">
         <CardContent>
-          <form className="space-y-6">
-            <div className="flex flex-col space-y-1">
-              <label className="text-sm font-medium leading-none text-[#333]" htmlFor="email">
-                Email
-              </label>
-              <Input id="email" placeholder="Enter your email" type="email" />
-            </div>
-            <div className="flex flex-col space-y-1">
-              <label className="text-sm font-medium leading-none text-[#333]" htmlFor="password">
-                Password
-              </label>
-              <Input id="password" placeholder="Enter your password" type="password" />
-            </div>
-            <Button className="w-full">Sign In</Button>
-          </form>
+          <SigninForm />
         </CardContent>
         <CardFooter className="flex flex-col items-center justify-between space-y-2 pt-4">
           <Link className="text-sm text-[#555]" href="#">
@@ -47,7 +34,7 @@ export default function Component() {
           </Link>
           <div className="flex items-center space-x-1">
             <p className="text-sm text-[#555]">Don't have an account?</p>
-            <Link className="text-sm text-[#555] font-medium" href="#">
+            <Link className="text-sm text-[#555] font-medium" href="signup">
               Sign up
             </Link>
           </div>
