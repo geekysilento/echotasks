@@ -1,4 +1,5 @@
 'use client'
+
 import Board from "@/components/Board";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";

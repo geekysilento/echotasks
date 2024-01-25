@@ -15,7 +15,7 @@ export default function Component() {
             alt="EchoTasks"
             height={400}
             src="/echotasks.png"
-            className="h-auto w-auto"
+            className=""
             width={400}
           />
         </h1>
