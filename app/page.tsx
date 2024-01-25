@@ -1,11 +1,13 @@
+'use client'
 import Board from "@/components/Board";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
+import useAuthStore from "@/store/AuthStore";
 
-import Link from "next/link";
 
-export default function Home() {
-  const user = null;
+
+export default async function Home() {
+  const user = await useAuthStore((state) => state.username);
   if(!user){
     redirect("/auth/signin")
   }

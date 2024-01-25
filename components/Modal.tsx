@@ -4,6 +4,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { useModalStore } from '@/store/ModalStore';
 import { useBoardStore } from '@/store/BoardStore';
 import TaskTypeRadioGroup from './TaskTypeRadioGroup';
+import useAuthStore from '@/store/AuthStore';
 
 function Modal() {
   const [addTask, newTaskInput, setNewTaskInput, newTaskType] = useBoardStore((state) => [
@@ -16,12 +17,12 @@ function Modal() {
     state.isOpen,
     state.closeModal
   ])
- const testname = "modalusername"
+ const CreatedBy = useAuthStore((state) => state.username)
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!newTaskInput) return;
 
-    addTask(newTaskInput, newTaskType, testname);
+    addTask(newTaskInput, newTaskType, CreatedBy);
     closeModal();
   };
 

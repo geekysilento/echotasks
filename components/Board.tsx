@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 
 import Column from "./Column";
+import useAuthStore from "@/store/AuthStore";
 
 function Board() {
   const [board, getBoard, setBoardState, updateTodoDB] = useBoardStore(
@@ -15,7 +16,7 @@ function Board() {
       state.updateTodoDB,
     ]
   );
-  const CreatedBy = "modalusername"
+  const CreatedBy = useAuthStore((state) => state.username);
   useEffect(() => {
     getBoard(CreatedBy);
   }, [getBoard]);

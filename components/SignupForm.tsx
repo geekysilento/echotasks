@@ -1,17 +1,21 @@
-'use client'
+'use client';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { account } from "@/appwrite";
+import { ID, account } from "@/appwrite";
 import { useRouter } from "next/navigation";
 import useAuthStore from "@/store/AuthStore";
 
-export default function signinform() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+
+
+export default function SignupForm() {
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const router = useRouter()
     const setUser = useAuthStore((state) => state.setUser)
-    const router = useRouter();
-    const signinHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+
+    const signupHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         // Check if the password meets the length requirement
@@ -21,12 +25,13 @@ export default function signinform() {
         }
 
         // Check for other fields and proceed with account creation
-        if (email.trim() !== '' && password.trim() !== '') {
+        if (username.trim() !== '' && email.trim() !== '' && password.trim() !== '') {
           try {
+            // Call your account creation API
+            const acc = await account.create(ID.unique(), email, password, username);
 
             // Create a session
             const session = await account.createEmailSession(email, password);
-            const username = (await account.get()).name
 
             if (session) {
                 setUser(username)
@@ -41,21 +46,28 @@ export default function signinform() {
           alert("Input fields cannot be empty!");
         }
       };
+
     return (
-        <form className="space-y-6" onSubmit={signinHandler}>
+        <form className="space-y-6" onSubmit={signupHandler}>
+            <div className="flex flex-col space-y-1">
+                <label className="text-sm font-medium leading-none text-[#333]" htmlFor="username">
+                    Username
+                </label>
+                <Input id="username" placeholder="Enter your username" type="string" onChange={(e) => setUsername(e.target.value)} />
+            </div>
             <div className="flex flex-col space-y-1">
                 <label className="text-sm font-medium leading-none text-[#333]" htmlFor="email">
                     Email
                 </label>
-                <Input id="email" placeholder="Enter your Email" type="text" onChange={(e) => setEmail(e.target.value)} />
+                <Input id="email" placeholder="Enter your email" type="email" onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="flex flex-col space-y-1">
-                <label className="text-sm font-medium leading-none text-[#333]" htmlFor="password" >
+                <label className="text-sm font-medium leading-none text-[#333]" htmlFor="password">
                     Password
                 </label>
                 <Input id="password" placeholder="Enter your password" type="password" onChange={(e) => setPassword(e.target.value)} />
             </div>
-            <Button className="w-full">Sign In</Button>
+            <Button className="w-full" type="submit">Sign Up</Button>
         </form>
-    )
+    );
 }

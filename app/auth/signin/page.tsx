@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { CardContent, CardFooter, Card } from "@/components/ui/card"
 import Link from "next/link"
 import Image from "next/image"
-import SigninForm from "@/components/signinForm"
+import SigninForm from "@/components/SigninForm"
 
 export default function Component() {
   return (
@@ -18,7 +18,7 @@ export default function Component() {
             alt="EchoTasks"
             height={400}
             src="/echotasks.png"
-            className=""
+            className="h-auto w-auto"
             width={400}
           />
         </h1>

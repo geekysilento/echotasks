@@ -5,6 +5,7 @@ import { MagnifyingGlassIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import Avatar from "react-avatar";
 import { useBoardStore } from "@/store/BoardStore";
 import fetchSuggestion from "@/lib/fetchSuggestion";
+import useAuthStore from "@/store/AuthStore";
 
 function Header() {
   const [board, searchString, setSearchString] = useBoardStore((state) => [
@@ -12,6 +13,7 @@ function Header() {
     state.searchString,
     state.setSearchString,
   ]);
+  const username = useAuthStore((state) => state.username)
   const [loading, setLoading] = useState<boolean>(false);
   const [suggestion, setSuggestion] = useState<string>("");
   // useEffect(() => {
@@ -63,7 +65,7 @@ function Header() {
               Search
             </button>
           </form>
-          <Avatar name="Aditya Karna" round color="teal" size="50" />
+          <Avatar name={username} round color="teal" size="50" />
         </div>
       </div>
       <div className="flex items-center justify-center px-5 py-5">

@@ -1,7 +1,7 @@
 import { CardContent, CardFooter, Card } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
-import SigninForm from "@/components/signinForm";
+import SignupForm from "@/components/SignupForm";
 
 export default function SignupComponent() {
 
@@ -24,7 +24,7 @@ export default function SignupComponent() {
       </div>
       <Card className="w-[400px] pt-6">
         <CardContent>
-            <SigninForm />
+            <SignupForm />
         </CardContent>
         <CardFooter className="flex flex-col items-center justify-between space-y-2 pt-4">
           <Link className="text-sm text-[#555]" href="signin">
