@@ -4,7 +4,7 @@ import { create } from "zustand";
 
 interface BoardState {
   board: Board;
-  getBoard: (createdBy : string) => void;
+  getBoard: (createdBy: string) => void;
   setBoardState: (board: Board) => void;
   updateTodoDB: (todo: Todo, columnId: TypeColumn) => void;
   searchString: string;
@@ -35,15 +35,15 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   setBoardState: (board) => set({ board }),
 
   deleteTask: async (taskIndex: number, todo: Todo, id: TypeColumn) => {
-    const newColumns = new Map(get().board.columns)
+    const newColumns = new Map(get().board.columns);
     newColumns.get(id)?.todos.splice(taskIndex, 1);
     set({ board: { columns: newColumns } });
 
     await databases.deleteDocument(
-      process.env.NEXT_PUBLIC_DATABASE_ID,
-      process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID,
+      process.env.NEXT_PUBLIC_DATABASE_ID!,
+      process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!,
       todo.$id
-    )
+    );
   },
 
   setNewTaskInput: (input: string) => set({ newTaskInput: input }),
@@ -51,8 +51,8 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
   updateTodoDB: async (todo, columnId) => {
     await databases.updateDocument(
-      process.env.NEXT_PUBLIC_DATABASE_ID,
-      process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID,
+      process.env.NEXT_PUBLIC_DATABASE_ID!,
+      process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!,
       todo.$id,
       {
         title: todo.title,
@@ -81,7 +81,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
       const column = newColumns.get(columnId);
 
-      if(!column) {
+      if (!column) {
         newColumns.set(columnId, {
           id: columnId,
           todos: [newTodo],
@@ -92,8 +92,8 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       return {
         board: {
           columns: newColumns,
-        }
-      }
-    })
+        },
+      };
+    });
   },
 }));
