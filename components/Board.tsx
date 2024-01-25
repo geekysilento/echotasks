@@ -19,7 +19,7 @@ function Board() {
   const CreatedBy = useAuthStore((state) => state.username);
   useEffect(() => {
     getBoard(CreatedBy);
-  }, [getBoard]);
+  }, [getBoard(CreatedBy)]);
 
   const handleOnDragEnd = (result: DropResult) => {
     const { destination, source, type } = result;

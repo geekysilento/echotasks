@@ -6,7 +6,7 @@ import { account } from "@/appwrite";
 import { useRouter } from "next/navigation";
 import useAuthStore from "@/store/AuthStore";
 
-export default function signinform() {
+export default function Signinform() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const setUser = useAuthStore((state) => state.setUser)

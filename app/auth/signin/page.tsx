@@ -1,6 +1,3 @@
-
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { CardContent, CardFooter, Card } from "@/components/ui/card"
 import Link from "next/link"
 import Image from "next/image"
@@ -23,6 +20,7 @@ export default function Component() {
           />
         </h1>
         <p className="mt-1 text-lg text-[#555]">Sign in to manage your tasks</p>
+
       </div>
       <Card className="w-[400px] pt-6">
         <CardContent>
@@ -33,9 +31,9 @@ export default function Component() {
             Forgot password?
           </Link>
           <div className="flex items-center space-x-1">
-            <p className="text-sm text-[#555]">Don't have an account?</p>
+            <p className="text-sm text-[#555]">Dont have an account?</p>
             <Link className="text-sm text-[#555] font-medium" href="signup">
-              Sign up
+              Signin
             </Link>
           </div>
         </CardFooter>

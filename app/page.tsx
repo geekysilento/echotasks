@@ -6,8 +6,8 @@ import useAuthStore from "@/store/AuthStore";
 
 
 
-export default async function Home() {
-  const user = await useAuthStore((state) => state.username);
+export default function Home() {
+  const user = useAuthStore((state) => state.username);
   if(!user){
     redirect("/auth/signin")
   }
