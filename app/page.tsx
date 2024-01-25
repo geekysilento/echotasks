@@ -9,6 +9,7 @@ import useAuthStore from "@/store/AuthStore";
 
 export default function Home() {
   const user = useAuthStore((state) => state.username);
+  
   if(!user){
     redirect("/auth/signin")
   }
